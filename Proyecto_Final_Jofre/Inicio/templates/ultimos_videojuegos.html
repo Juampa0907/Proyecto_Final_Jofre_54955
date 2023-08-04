@@ -1,0 +1,66 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block cambiante %}
+    <div class="container my-5 pt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="text-center mb-4">Últimos Videojuegos</h1>
+                <ul class="list-group">
+                    {% for objeto in objetos %}
+                        <li class="list-group-item mb-4 border">
+                            <h2 class="mb-2">{{ objeto.nombre|upper }}</h2>
+                            {% if objeto.imagen %}
+                                <img src="{{ objeto.imagen.url }}" alt="{{ objeto.nombre }}"
+                                    class="img-fluid rounded" style="max-width: 200px;">
+                            {% endif %}
+                            <p class="mb-1"><strong>Año de lanzamiento:</strong> {{ objeto.ano_lanzamiento }}</p>
+                            <p class="mb-1"><strong>Género:</strong> {{ objeto.genero }}</p>
+                            <p class="mb-1"><strong>Desarrollador:</strong> {{ objeto.desarrollador }}</p>
+                            <p class="mb-1"><strong>Plataforma:</strong>
+                                {% for plataforma in objeto.plataforma.split %}
+                                    .{{ plataforma }}
+                                {% endfor %}
+                            </p>
+                            <p class="mb-2"><strong>Descripción:</strong> {{ objeto.descripcion }}</p>
+                            <p class="mb-2"><strong>Requisitos:</strong> {{ objeto.requisitos_sistema}}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <nav aria-label="Videojuegos Pagination">>
+                    
+                    <ul class="pagination justify-content-center mt-4">
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page=1">Primera</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                            </li>
+                        {% endif %}
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if num == page_obj.number %}
+                                <li class="page-item active">
+                                    <span class="page-link">{{ num }} <span class="sr-only"></span></span>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                
+                </nav>
+            </div>
+        </div>
+    </div>
+{% endblock %}

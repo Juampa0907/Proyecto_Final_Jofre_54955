@@ -1,0 +1,38 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block cambiante %}
+    <div class="container my-5 pt-5">
+        <div class="contenedor-r">
+            <h1>Detalles de la Recomendación</h1>
+            <h2>{{ recomendacion.videojuego.nombre|upper }}</h2>
+            <p class="mb-1"><strong>Usuario:</strong> {{ recomendacion.usuario.username }}</p>
+            <p class="mb-1"><strong>Puntuación:</strong> {{ recomendacion.puntuacion }}</p>
+            <p class="mb-1"><strong>Fecha:</strong> {{ recomendacion.fecha }}</p>
+            <p><strong>Comentario:</strong> {{ recomendacion.comentario }}</p>
+
+            {% if recomendacion.imagen %}
+                <img src="{{ recomendacion.imagen.url }}" alt="{{ recomendacion.videojuego.nombre }}" class="img-fluid rounded" style="max-width: 200px;">
+            {% endif %}
+
+            <form method="post" action="{% url 'agregar_comentario' recomendacion.id %}" class="my-3">
+                {% csrf_token %}
+                {{ form.texto }}
+                <button type="submit" class="btn btn-primary btn-sm mt-3">Enviar Comentario</button>
+            </form>
+
+            <h3>Comentarios:</h3>
+            <ul class="comentarios-lista">
+                {% for comentario in recomendacion.comentarios.all %}
+                    <li class="comentario mb-3 border p-2 rounded">
+                        {{ comentario.texto }} - {{ comentario.usuario.username }}
+                        {% if comentario.usuario == user %}
+                            <a href="{% url 'editar_comentario' comentario.id %}" class="mx-1">Editar</a>
+                            <a href="{% url 'eliminar_comentario' comentario.id %}" class="mx-1">Eliminar</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

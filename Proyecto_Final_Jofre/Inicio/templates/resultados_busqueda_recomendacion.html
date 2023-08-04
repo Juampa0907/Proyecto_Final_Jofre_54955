@@ -1,0 +1,33 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block cambiante %}
+    <div class="container my-5 pt-5">
+        {% if resultados %}
+            <h2 class="mb-4">Resultados de búsqueda para "{{ videojuego_busqueda }}"</h2>
+            <ul class="list-group">
+                {% for resultado in resultados %}
+                    <li class="list-group-item mb-4">
+                        <h2 class="mb-2">{{ resultado.videojuego.nombre|upper }}</h2>
+                        <p class="mb-1"><strong>Usuario:</strong> {{ resultado.usuario.username }}</p>
+                        <p class="mb-1"><strong>Puntuación:</strong> {{ resultado.puntuacion }}</p>
+                        <p class="mb-1"><strong>Fecha:</strong> {{ resultado.fecha }}</p>
+                        <p><strong>Comentario:</strong> {{ resultado.comentario }}</p>
+
+                        {% if resultado.imagen %}
+                            <img src="{{ resultado.imagen.url }}" alt="{{ resultado.videojuego.nombre }}"
+                                class="img-fluid rounded" style="max-width: 200px;">
+                        {% endif %}
+                        <a href="{% url 'recomendacion_detalle' pk=resultado.pk %}" class="btn btn-primary">Ver detalles</a>
+                        {% if resultado.usuario == user %}
+                            <a href="{% url 'editar_recomendacion' resultado.id %}" class="btn btn-secondary">Editar</a>
+                            <a href="{% url 'eliminar_recomendacion' resultado.id %}" class="btn btn-danger">Eliminar</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No se encontraron resultados para "{{ videojuego_busqueda }}".</p>
+        {% endif %}
+    </div>
+{% endblock %}

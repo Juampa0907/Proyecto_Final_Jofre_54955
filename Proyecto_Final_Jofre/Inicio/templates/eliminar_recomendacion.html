@@ -1,0 +1,13 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block cambiante %}
+    <div class="container my-5 pt-5">
+        <h1 class="text-center">Eliminar Recomendación</h1>
+        <p class="text-center">{{ recomendacion.videojuego.nombre|upper }}</p>
+        <form method="post" class="d-flex justify-content-center">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form>
+    </div>
+{% endblock %}

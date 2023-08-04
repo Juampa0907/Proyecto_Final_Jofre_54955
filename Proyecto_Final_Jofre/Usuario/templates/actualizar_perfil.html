@@ -1,0 +1,69 @@
+{% extends "inicio_usuario.html" %}
+{% load static %}
+
+
+{% block cambiante %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <a class="navbar-brand js-scroll-trigger" href="{% url 'inicio_usuario' %}">
+        <span class="d-block d-lg-none">{{ user.username }}</span>
+        <span class="d-none d-lg-block">
+            {% if user.userprofile.imagen %}
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{{ user.userprofile.imagen.url }}" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;" />
+            {% else %}
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{{STATIC_URL}}/media/avatares/default_avatar.jpg" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;"  />
+            {% endif %}
+        </span>
+        
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'Inicio' %}">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'editar_usuario' %}">Editar Usuario</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'cambiar_contraseña' %}">Cambiar Contraseña</a></li>  
+            
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#reseñas">Reseñas Propias</a></li>
+            
+            
+        </ul>
+    </div>
+</nav>
+    <div class="container my-5"> <!-- Agregar un margen superior de 5 unidades -->
+        <h1 class="mb-4">Actualizar Perfil</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="{{ profile_form.provincia.id_for_label }}">Provincia:</label>
+                {{ profile_form.provincia }}
+            </div>
+            <div class="mb-3">
+                <label for="{{ profile_form.imagen.id_for_label }}">Imagen de perfil:</label>
+                {{ profile_form.imagen }}
+            </div>
+            <div class="mb-3">
+                <label for="{{ profile_form.eliminar_imagen.id_for_label }}">Eliminar imagen de perfil:</label>
+                {{ profile_form.eliminar_imagen }}
+            </div>
+            
+            <div class="mb-3">
+                <label for="{{ profile_form.sobre_mi.id_for_label }}">Sobre Mi:</label>
+                {{ profile_form.sobre_mi}}
+            </div>
+
+            <div class="mb-3">
+                <label for="{{ profile_form.steam_url.id_for_label }}">Enlace a Steam:</label>
+                {{ profile_form.steam_url }}
+            </div>
+            <div class="mb-3">
+                <label for="{{ profile_form.twitter_url.id_for_label }}">Enlace a Twitter:</label>
+                {{ profile_form.twitter_url }}
+            </div>
+            <div class="mb-3">
+                <label for="{{ profile_form.instagram_url.id_for_label }}">Enlace a Instagram:</label>
+                {{ profile_form.instagram_url }}
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+{% endblock %}

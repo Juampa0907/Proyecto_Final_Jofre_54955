@@ -1,0 +1,56 @@
+{% extends "padre.html"%}
+{% load static%}
+{% block cambiante %}
+
+    <div class="container my-5 pt-5"> <!-- Agregar un margen superior de 5 unidades -->
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h2 class="mb-4">Añadir Videojuego</h2>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="{{ miFormulario.nombre.id_for_label }}" class="form-label">Nombre</label>
+                        {{ miFormulario.nombre }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ miFormulario.ano_lanzamiento.id_for_label }}" class="form-label">Año de lanzamiento</label>
+                        {{ miFormulario.ano_lanzamiento }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ miFormulario.desarrollador.id_for_label }}" class="form-label">Desarrollador</label>
+                        {{ miFormulario.desarrollador }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ miFormulario.genero.id_for_label }}" class="form-label">Género</label>
+                        {{ miFormulario.genero }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ miFormulario.plataforma.id_for_label }}" class="form-label">Plataforma</label>
+                        {{ miFormulario.plataforma }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ miFormulario.descripcion.id_for_label }}" class="form-label">Descripción</label>
+                        {{ miFormulario.descripcion }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ miFormulario.imagen.id_for_label }}" class="form-label">Imagen</label>
+                        {{ miFormulario.imagen }}
+                    </div>
+                    
+                    
+                    <div class="mb-3">
+                        <label for="{{ miFormulario.requisitos_sistema.id_for_label }}" class="form-label">Requisitos de sistema</label>
+                        {{ miFormulario.requisitos_sistema}}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agregar el enlace al script de Bootstrap (requerido para algunos componentes de Bootstrap) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+{% endblock %}

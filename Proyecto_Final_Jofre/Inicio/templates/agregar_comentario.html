@@ -1,0 +1,25 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block cambiante %}
+    <head>
+        <title>Detalles de la Recomendación</title>
+    </head>
+    <body>
+        <div class="container my-5 pt-5">
+            <div class="contenedor-r">
+                <h1>Detalles de la Recomendación</h1>
+                <!-- Resto del contenido... -->
+
+                <form method="post" action="{% url 'agregar_comentario' recomendacion.id %}" class="my-3 comentario-form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Enviar Comentario</button>
+                </form>
+
+                <!-- Resto del contenido... -->
+            </div>
+        </div>
+    </body>
+</html>
+{% endblock %}

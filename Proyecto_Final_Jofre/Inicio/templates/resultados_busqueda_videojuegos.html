@@ -1,0 +1,36 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block cambiante %}
+
+    <div class="container my-5 pt-5">
+        <h1 class="text-center">Resultados de búsqueda</h1>
+
+        <p class="text-center">Palabra clave buscada: {{ videojuego_busqueda }}</p>
+
+        {% if resultados %}
+            <ul class="list-group">
+                {% for videojuego in resultados %}
+                    <li class="list-group-item mb-4">
+                        <h3>{{ videojuego.nombre }}</h3>
+                        <p><strong>Año de lanzamiento:</strong> {{ videojuego.ano_lanzamiento }}</p>
+                        <p><strong>Género:</strong> {{ videojuego.genero }}</p>
+                        <p><strong>Desarrollador:</strong> {{ videojuego.desarrollador }}</p>
+                        <p><strong>Plataforma:</strong> {{ videojuego.plataforma }}</p>
+                        <p><strong>Descripción:</strong> {{ videojuego.descripcion }}</p>
+                        <div style="max-width: 600px;">
+                            <p><strong>Requisitos del sistema:</strong> {{ videojuego.requisitos_sistema }}</p>
+                        </div>
+                        
+                        {% if videojuego.imagen %}
+                            <img src="{{ videojuego.imagen.url }}" alt="{{ videojuego.imagen }}"
+                                class="img-fluid rounded" style="max-width: 200px;">
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-center">No se encontraron resultados.</p>
+        {% endif %}
+    </div>
+{% endblock %}

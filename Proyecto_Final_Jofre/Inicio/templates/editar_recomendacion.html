@@ -1,0 +1,45 @@
+{% extends "padre.html"%}
+{% load static%}
+{% block cambiante %}
+
+<head>
+    <title>Editar Recomendación</title>
+   
+    
+</head>
+<body>
+    <div class="container my-5 pt-5"> 
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h1 class="mb-4">Editar Recomendación</h1>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="{{ form.videojuego.id_for_label }}" class="form-label">Videojuego</label>
+                        {{ form.videojuego }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.comentario.id_for_label }}" class="form-label">Comentario</label>
+                        {{ form.comentario }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.puntuacion.id_for_label }}" class="form-label">Puntuación</label>
+                        {{ form.puntuacion }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.imagen.id_for_label }}" class="form-label">Imagen</label>
+                        {{ form.imagen }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agregar el enlace al script de Bootstrap (requerido para algunos componentes de Bootstrap) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "inicio_usuario.html" %}
+{% load static %}
+
+{% block cambiante %}
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <span class="d-block d-lg-none">{{ usuario.username }}</span>
+            <span class="d-none d-lg-block">
+                {% if usuario.userprofile.imagen %}
+                    <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{{ usuario.userprofile.imagen.url }}" />
+                {% else %}
+                    <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{% static 'Usuario/img/default_avatar.jpg' %}"  />
+                {% endif %}
+            </span>
+            
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'Inicio' %}">Inicio</a></li>
+                
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Sobre {{ usuario.username }}</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#reseñas">Reseñas de {{ usuario.username }}</a></li>
+                
+                
+            </ul>
+        </div>
+    </nav>
+    
+     <!-- About-->
+     <section class="resume-section" id="about">
+        <div class="resume-section-content">
+            <h1 class="mb-0">
+                
+                <span class="text-primary">Perfil de {{ usuario.username }}</span>
+            </h1>
+            <div class="subheading mb-5">
+                {{ usuario.email}} · {{ usuario.userprofile.provincia }} 
+            </div>
+            {% if usuario.userprofile.sobre_mi %}
+            <p class="lead mb-5"> Sobre {{ usuario.username }}: {{usuario.userprofile.sobre_mi}}</p>
+        {% else %}
+            <p class="lead mb-5">No sabemos mucho aún de esta persona </p>
+        {% endif %}
+            
+            <div class="social-icons">
+                {% if usuario.userprofile.steam_url %}
+                    <a class="social-icon" href="{{ usuario.userprofile.steam_url }}" target="_blank">
+                        <i class="fab fa-steam"></i>
+                    </a>
+                {% endif %}
+                                     
+                
+                {% if usuario.userprofile.instagram_url %}
+                    <a class="social-icon" href="{{ usuario.userprofile.instagram_url }}" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                {% endif %}
+
+                
+                {% if usuario.userprofile.twitter_url %}
+                    <a class="social-icon" href="{{ usuario.userprofile.twitter_url }}" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                {% endif %}
+                
+            </div>
+        </div>
+    </section>
+    <hr class="m-0" />
+    <!-- Reseñas-->
+  
+    <section class="resume-section" id="reseñas">
+        <div class="resume-section-content">
+            <h2 class="mb-5">Reseñas de {{ usuario.username }}</h2>
+            <ul>
+                {% for recomendacion in usuario.recomendacion_set.all %}
+                    <li>
+                        <h3>{{ recomendacion.videojuego.nombre }}</h3>
+                        <p>Comentario: {{ recomendacion.comentario }}</p>
+                        <p>Puntuación: {{ recomendacion.puntuacion }}</p>
+                        <!-- Agregar otros detalles de la recomendación si es necesario -->
+
+                        <!-- Botón Ver detalle -->
+                        <a href="{% url 'recomendacion_detalle' pk=recomendacion.pk %}">Ver detalle</a>
+
+                        
+                    </li>
+                {% empty %}
+                    <p>No has realizado ninguna reseña.</p>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+{% endblock %}

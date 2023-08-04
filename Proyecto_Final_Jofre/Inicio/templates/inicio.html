@@ -1,0 +1,83 @@
+{% extends "padre.html"%}
+{% load static%}
+{% block cambiante %}
+
+<header class="bg-primary bg-gradient text-white py-5 mt-5">  
+    <div class="container px-4">
+        <div class="row gx-4 justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h1 class="fw-bolder">Bienvenidos a REJUGAR</h1>
+                <p class="lead">Reseñas de Jugadores Argentinos</p>
+                <p class="PlayStation">Una página dedicada a compartir experiencias de juegos desde nuestro país</p>
+                {% if not user.is_authenticated %}
+                <a class="btn btn-lg btn-light" href="{% url 'Register' %}">¡Únete!</a>
+                {% endif %}
+                <div class="container px-4 py-3 text-center">
+                    
+                    <a href="#section1" class="btn btn-primary me-2">¿Qué es REJUGAR?</a>
+                    <a href="#section2" class="btn btn-primary me-2">Objetivos</a>
+                    <a href="#section3" class="btn btn-primary me-2">¿Cómo funciona?</a>
+                    <a href="#about" class="btn btn-primary">¿Quién soy yo, el creador?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="bg-light py-5" id="section1">
+    <div class="container px-4">
+        <div class="row gx-4 justify-content-center">
+            <div class="col-lg-8">
+                <h2>¡Bienvenidos a REJUGAR!</h2>
+                <p class="lead">Somos una apasionada comunidad de gamers argentinos que se reúnen para compartir fascinantes experiencias en el mundo de los videojuegos y expresar sus opiniones.</p>
+                <p>En REJUGAR, nos enorgullecemos de ser una plataforma donde jugadores ávidos, ya sean novatos o veteranos experimentados, pueden unirse para explorar juntos mundos digitales repletos de emociones y desafíos. Nuestra misión es unir a la comunidad gamer argentina y crear un espacio donde cada jugador pueda conectarse, aprender y crecer en su pasión por los videojuegos.</p>
+                <p>Celebramos la diversidad de géneros y plataformas, desde los épicos enfrentamientos en juegos de acción, hasta los intrigantes rompecabezas de aventuras gráficas y las emocionantes hazañas en juegos de rol. En REJUGAR, cada experiencia cuenta y cada opinión es valorada, creando un ambiente de respeto y empatía entre nuestros miembros.</p>
+                <p>Si estás buscando un lugar donde tus pasiones sean apreciadas y valoradas, únete a REJUGAR. Juntos exploraremos, aprenderemos y crearemos recuerdos inolvidables en esta travesía gamer.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light py-5" id="section2">
+    <div class="container px-4">
+        <div class="row gx-4 justify-content-center">
+            <div class="col-lg-8">
+                <h2>Objetivos</h2>
+                <ul>
+                    <li>Crear una comunidad de jugadores argentinos interesados en compartir reseñas de videojuegos.</li>
+                    <li>Fomentar el intercambio de opiniones y experiencias entre los jugadores argentinos.</li>
+                    <li>Promover la cultura de los videojuegos en Argentina a través de reseñas de calidad.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light py-5" id="section3">
+    <div class="container px-4">
+        <div class="row gx-4 justify-content-center">
+            <div class="col-lg-8">
+                <h2>Cómo funciona</h2>
+                <ul>
+                    <li>Regístrate como usuario en nuestra plataforma para comenzar tu travesía gamer.</li>
+                    <li>Explora los videojuegos disponibles y lee las reseñas de otros jugadores argentinos.</li>
+                    <li>Comparte tus propias reseñas de los videojuegos que has jugado y comparte tus opiniones con la comunidad.</li>
+                    <li>Interactúa con otros jugadores a través de comentarios y valoraciones para enriquecer la experiencia para todos.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light py-5" id="about">
+    <div class="container px-4">
+        <div class="row gx-4 justify-content-center">
+            <div class="col-lg-8">
+                <h2>¿Quién soy yo, el creador?</h2>
+                <p class="lead">¡Hola! Mi nombre es Juan Pablo Jofré, soy un estudiante de Ingeniería Eléctrica que decidió aventurarse en el fascinante mundo de la programación y desarrollar REJUGAR como mi proyecto final. Mi pasión por los videojuegos y el deseo de construir una comunidad sólida de gamers argentinos me impulsaron a crear este espacio. Espero que REJUGAR se convierta en un lugar donde todos puedan disfrutar, compartir y conectarse a través de lo que más nos apasiona: los videojuegos.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

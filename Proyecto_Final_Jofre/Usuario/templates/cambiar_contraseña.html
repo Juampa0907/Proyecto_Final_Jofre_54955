@@ -1,0 +1,47 @@
+{% extends "inicio_usuario.html" %}
+{% load static %}
+
+
+{% block cambiante %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <a class="navbar-brand js-scroll-trigger" href="{% url 'inicio_usuario' %}">
+        <span class="d-block d-lg-none">{{ user.username }}</span>
+        <span class="d-none d-lg-block">
+            {% if user.userprofile.imagen %}
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{{ user.userprofile.imagen.url }}" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;" />
+            {% else %}
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{{STATIC_URL}}/media/avatares/default_avatar.jpg" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;"  />
+            {% endif %}
+        </span>
+        
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'Inicio' %}">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'actualizar_perfil' %}">Actualizar Perfil</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'editar_usuario' %}">Editar Usuario</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#reseñas">Reseñas Propias</a></li>
+            
+            
+        </ul>
+    </div>
+</nav>
+<!-- editar_contraseña.html -->
+<div class="container my-5">
+    <h1 class="mb-4">Cambiar Contraseña</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-input mb-3">
+                <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                {{ field }}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+
+
+
+{% endblock %}
