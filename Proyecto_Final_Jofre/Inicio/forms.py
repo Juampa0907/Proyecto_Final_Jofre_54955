@@ -22,7 +22,7 @@ class VideojuegoForm(forms.ModelForm):
         def clean_nombre(self):
             nombre = self.cleaned_data.get('nombre')
             if nombre:
-                return nombre.upper()  # Convertir el nombre a mayúsculas antes de validarlo
+                return nombre.upper()  
             return nombre
         
         def clean_ano_lanzamiento(self):
@@ -36,16 +36,16 @@ class VideojuegoForm(forms.ModelForm):
 
 
 class RecomendacionForm(forms.ModelForm):
-    imagen = forms.ImageField(required=False)  # Campo para la imagen
+    imagen = forms.ImageField(required=False)  
 
     class Meta:
         model = Recomendacion
-        fields = ('videojuego', 'comentario', 'puntuacion', 'imagen')  # Incluye el campo 'imagen'
+        fields = ('videojuego', 'comentario', 'puntuacion', 'imagen')  
         labels = {
             'videojuego': 'Videojuego',
             'comentario': 'Comentario',
             'puntuacion': 'Puntuación',
-            'imagen': 'Imagen',  # Etiqueta para el campo de imagen
+            'imagen': 'Imagen',  
         }
         widgets = {
             'usuario': forms.HiddenInput(),

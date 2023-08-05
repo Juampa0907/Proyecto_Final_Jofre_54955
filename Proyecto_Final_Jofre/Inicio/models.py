@@ -33,7 +33,7 @@ class Videojuego(models.Model):
     plataforma = models.CharField(max_length=50)
     descripcion = models.TextField()
     requisitos_sistema = models.TextField()
-    imagen = models.ImageField(upload_to='juegos/', blank=True, null=True)  # Campo para la imagen
+    imagen = models.ImageField(upload_to='juegos/', blank=True, null=True) 
 
 
     def __str__(self):
@@ -55,7 +55,7 @@ class Recomendacion(models.Model):
     comentario = models.TextField()
     fecha = models.DateTimeField(auto_now_add=True)
     puntuacion = models.FloatField(default=1, validators=[MinValueValidator(1), MaxValueValidator(10)])
-    imagen = models.ImageField(upload_to='recomendaciones/', blank=True, null=True)  # Campo para la imagen
+    imagen = models.ImageField(upload_to='recomendaciones/', blank=True, null=True) 
 
     def __str__(self):
         return f"Recomendacion: {self.videojuego.nombre} - Usuario: {self.usuario.username}"

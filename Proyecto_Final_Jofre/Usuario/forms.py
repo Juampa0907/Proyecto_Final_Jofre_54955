@@ -33,7 +33,7 @@ class UserForm(forms.ModelForm):
 class ChangePasswordForm(PasswordChangeForm):
     class Meta:
         model = User
-        fields = []  # No se necesitan campos adicionales, ya que los campos de contraseña están en el formulario base
+        fields = []
         labels = {
             'old_password': 'Contraseña actual',
             'new_password1': 'Nueva contraseña',

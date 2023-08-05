@@ -44,8 +44,8 @@ def login_request(request):
             return render(request, "inicio.html", {"mensaje": "Error, formulario incorrecto"})
 
     form=AuthenticationForm()
-    #avatares=UserProfile.objects.filter(user=request.user.id)
-    return render(request, "login.html", {'form':form}) #{'avatar':avatares[0].imagen.url})
+    
+    return render(request, "login.html", {'form':form}) 
 
 @login_required
 def crear_recomendacion(request):
@@ -57,7 +57,7 @@ def crear_recomendacion(request):
                 recomendacion.usuario = request.user
                 recomendacion.save()
                
-                return redirect('Inicio')  # Redirigir a la página de inicio o la que desees después de guardar la recomendación
+                return redirect('Inicio')  
             except IntegrityError:
                 form.add_error(None, "Ya has realizado una recomendación para este videojuego.")
     else:

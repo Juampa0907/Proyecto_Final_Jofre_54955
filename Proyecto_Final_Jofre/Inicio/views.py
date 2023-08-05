@@ -25,8 +25,8 @@ def buscar_recomendacion(request):
 
 class VideojuegoListView(ListView):
     model = Videojuego
-    template_name = 'ultimos_videojuegos.html'  # Ruta de la plantilla que mostrará la lista
-    context_object_name = 'objetos'  # Nombre del contexto que se pasará a la plantilla
+    template_name = 'ultimos_videojuegos.html'  
+    context_object_name = 'objetos'  
     paginate_by = 3
     
 
@@ -68,7 +68,7 @@ def agregar_comentario(request, recomendacion_id):
 def editar_recomendacion(request, recomendacion_id):
     recomendacion = get_object_or_404(Recomendacion, id=recomendacion_id)
     
-    # Verificar si el usuario es el mismo que creó la recomendación
+    
     if recomendacion.usuario != request.user:
         return HttpResponseForbidden("No tienes permiso para editar esta recomendación.")
 
@@ -86,7 +86,7 @@ def editar_recomendacion(request, recomendacion_id):
 def eliminar_recomendacion(request, recomendacion_id):
     recomendacion = get_object_or_404(Recomendacion, id=recomendacion_id)
 
-    # Verificar si el usuario es el mismo que creó la recomendación
+    
     if recomendacion.usuario != request.user:
         return HttpResponseForbidden("No tienes permiso para eliminar esta recomendación.")
 
@@ -100,7 +100,7 @@ def eliminar_recomendacion(request, recomendacion_id):
 def editar_comentario(request, comentario_id):
     comentario = get_object_or_404(Comentario, id=comentario_id)
     
-    # Verificar si el usuario es el mismo que creó el comentario
+    
     if comentario.usuario != request.user:
         return HttpResponseForbidden("No tienes permiso para editar este comentario.")
 
@@ -119,7 +119,7 @@ def editar_comentario(request, comentario_id):
 def eliminar_comentario(request, comentario_id):
     comentario = get_object_or_404(Comentario, id=comentario_id)
 
-    # Verificar si el usuario es el mismo que creó el comentario
+   
     if comentario.usuario != request.user:
         return HttpResponseForbidden("No tienes permiso para eliminar este comentario.")
 
@@ -160,7 +160,7 @@ def anadir_videojuego(request):
         if miFormulario.is_valid():
             try:
                 miFormulario.save()
-             # Hacer algo con el objeto videojuego creado
+            
                 return render(request, 'inicio.html')
             except IntegrityError:
                 miFormulario.add_error(None, "El videojuego ya existe")

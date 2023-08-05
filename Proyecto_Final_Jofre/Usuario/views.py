@@ -12,7 +12,7 @@ def inicio_usuario(request):
 
 @login_required
 def actualizar_perfil(request):
-    # Obtén el perfil del usuario actual o crea uno si no existe
+    
     profile, created = UserProfile.objects.get_or_create(user=request.user)
     reseñas_usuario = Recomendacion.objects.filter(usuario=request.user)
 
@@ -23,7 +23,7 @@ def actualizar_perfil(request):
             if 'imagen' in request.FILES:
                 profile.imagen = request.FILES['imagen']
             if profile_form.cleaned_data['eliminar_imagen']:
-                profile.imagen = None  # Eliminar la imagen de perfil existente
+                profile.imagen = None  
             profile.save()
             return redirect('inicio_usuario')
     else:

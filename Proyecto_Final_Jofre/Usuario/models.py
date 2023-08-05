@@ -34,10 +34,10 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     provincia = models.CharField(max_length=50, choices=PROVINCIAS_CHOICES, default='')
     imagen = models.ImageField(upload_to='avatares', null=True, blank=True)
-    sobre_mi = models.TextField(blank=True, null=True)  # Campo para el texto "Sobre Mí"
-    steam_url = models.URLField(blank=True, null=True)  # Campo para el enlace a Steam
-    twitter_url = models.URLField(blank=True, null=True)  # Campo para el enlace a Twitter
-    instagram_url = models.URLField(blank=True, null=True)  # Campo para el enlace a Instagram
+    sobre_mi = models.TextField(blank=True, null=True)  
+    steam_url = models.URLField(blank=True, null=True)  
+    twitter_url = models.URLField(blank=True, null=True) 
+    instagram_url = models.URLField(blank=True, null=True)  
 
     def __str__(self):
         return f"Perfil de {self.user.username}"
